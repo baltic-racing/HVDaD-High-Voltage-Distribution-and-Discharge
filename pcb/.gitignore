@@ -1,0 +1,15 @@
+*.s#*
+*.b#*
+*.l#*
+*.elf
+*.lss
+*.map
+*.srec
+*.d
+*.o
+Makefile
+*.mk
+*.eep
+History/*
+Project Logs*
+__Previews*
