@@ -1,0 +1,716 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD21\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">05.10.2021</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">15:06:33</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc" class="file"><acronym title="C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc">C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">116</td></tr>
+</table>
+</td>
+</table><a name="ID2PCMIPGOQ1AYKS0JBMNX4J0NDLAE0Z5J1I51R5CLZCXBOXB41HQN"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDIOT4VY3VPJX5FH050HVD13YH2LPYIASFRFIB15FVGXSZQ3RWLOQN">Clearance Constraint (Gap=4mm) (InNetClass('GLVS')),(InNetClass('TS') OR InNetClass('TS_IM'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIBVHF31EWC5UCTPJCIEBEYJOHHEPJ3HIDBNSABCY1Q33WFN3SAWM">Clearance Constraint (Gap=0.152mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCLCNN4PFYNUDEBRE5KY0WRJ4EI4HCLROD002HTB21F1TCUQMCPQM">Clearance Constraint (Gap=3mm) (InNetClass('TS')),(InNetClass('TS'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDHDYCMVZRMC12PK2WZJOLJMWNNE1OXZ4F1CKUVCUGMQG3MDSOQDO">Clearance Constraint (Gap=0.152mm) (InNet('TS-')),(InNet('GATE'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3IY2GCL1F3TBCEJPYAFNCF5OYL0MEHMMNBU3KOBFNHX4QSHGYDHH">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQ5UFXEOC1SMCMXBEYKMFHUTNHM0UYBVBEP0PROCLAAGTMXCFDHDG">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">24</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWTSYDI2TUS1DNXIYMULFMBJ5SL55SJUFNAFSPPF25C0S4IDTW0CC">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID41H4F15QK4USNTYRIEQVQGJW2CTV10TIRD3EGXLJ45Y4L0FWS1SD">Width Constraint (Min=0.152mm) (Max=1.219mm) (Preferred=0.305mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDCUEO51E5KS33PJG3WUPTROJDJDTAHVD0JQUHH3L1EZNPDKAVMZXC">SMD To Corner (Distance=0.152mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDN2D12AZVPF0WLDLBWLJOWPHBCM5TNOFCFGK5LUJMJTGHFQSEPYJP">SMD Entry (Side = Allowed) (Corner = Allowed) (Any Angle = Allowed) (Ignore First Corner = Allowed)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDA1RJX5UQX5LUICTTSERWXQOBHGA2WKTDQJAZLSGGVKQG4POEMZBO">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDTOJVL5DTJO1WOKQ13FYBPX5PYOUPTC53OA5OXRCD2SRXWJPS0ING">Minimum Annular Ring (Minimum=0.17mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLETYIKVVPLYYBHPJ1QUM3M5H5GS1CG0CLB0OOKI2DQ0YXX4YZHVI">Acute Angle Constraint (Minimum=45.000) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRPO4IJEE32OPIJUSCBTLLHHNGFSTVBYCYASUR5JIILG4N2EQ4JUG">Hole Size Constraint (Min=0.2mm) (Max=7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDTNJC2JKZJGXIEL2H5YTGVWDXMPMULSPZ3ZMBV2KE4MY11T2Q3HYD">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID2AZZNAOFTWGPQWZS3UZD3TMLG2HTFK5DKJXJJMKRKP2AP12MKKC">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQO4MEFFFE3MBMIBSS2YNJ3YZ0CFIQHSATFKIPDNQYQHZUPXD3FFD">Silk To Solder Mask (Clearance=0.254mm) (Disabled)(All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNO0GYLU3MINXEVNBLK1IDTME5JCR2VKKNIQC4SE1AGZJ555D4HFD">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">12</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID1AV55SX4ZXSHEQJU0N4FP0ZRPHHEKXLRTRW355K3P0OBJSHUKLGH">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDYR5JJKWPR5J5FNOVGNC03DDV4NCLRJ5BZ4MNW0F13QBTF0DPUGUE">Board Clearance Constraint (Gap=0mm) (All)</a></td>
+<td class="column2">80</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDAXYDQ2N3SNBPGRDRFCNE05I3SHHFWL0SZZVWL2CHGQNJCVEZUWFM">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">116</td>
+</tr>
+</table><br><a name="IDQ5UFXEOC1SMCMXBEYKMFHUTNHM0UYBVBEP0PROCLAAGTMXCFDHDG"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4037.52mil|Location2.X=4963.465mil|Location1.Y=4474.055mil|Location2.Y=5464.646mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4037.52mil|Location2.X=4963.465mil|Location1.Y=4474.055mil|Location2.Y=5464.646mil|Absolute=True">Un-Routed Net Constraint: Net TS+ Between Pad C1-1(104.013mm,114.276mm) on Top Layer And Pad R1-2(125.222mm,138.227mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1840.079mil|Location2.X=1965.561mil|Location1.Y=4347.284mil|Location2.Y=4410.945mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1840.079mil|Location2.X=1965.561mil|Location1.Y=4347.284mil|Location2.Y=4410.945mil|Absolute=True">Un-Routed Net Constraint: Net SC_END Between Pad C2-1(47.5mm,111.276mm) on Multi-Layer And Pad R12-2(49.425mm,110.871mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1840.079mil|Location2.X=1965.561mil|Location1.Y=4408.307mil|Location2.Y=4529.055mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1840.079mil|Location2.X=1965.561mil|Location1.Y=4408.307mil|Location2.Y=4529.055mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C2-2(47.5mm,114.276mm) on Multi-Layer And Pad D2-1(49.525mm,112.371mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1857.874mil|Location2.X=2063.278mil|Location1.Y=3486.802mil|Location2.Y=3565.542mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1857.874mil|Location2.X=2063.278mil|Location1.Y=3486.802mil|Location2.Y=3565.542mil|Absolute=True">Un-Routed Net Constraint: Net NetC3_1 Between Pad C3-1(48.65mm,89.565mm) on Top Layer And Pad R11-2(51.407mm,89.565mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1857.874mil|Location2.X=2063.278mil|Location1.Y=3737.392mil|Location2.Y=3982.875mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1857.874mil|Location2.X=2063.278mil|Location1.Y=3737.392mil|Location2.Y=3982.875mil|Absolute=True">Un-Routed Net Constraint: Net NetC3_3 Between Pad C3-3(48.65mm,95.565mm) on Top Layer And Pad R14-2(51.407mm,100.165mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2530.787mil|Location2.X=2967.5mil|Location1.Y=4200.709mil|Location2.Y=4509.892mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2530.787mil|Location2.X=2967.5mil|Location1.Y=4200.709mil|Location2.Y=4509.892mil|Absolute=True">Un-Routed Net Constraint: Net TS- Between Pad D1-1(64.582mm,114.051mm) on Top Layer And Pad Q1-3(74.676mm,107.841mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2438.012mil|Location2.X=2554.409mil|Location1.Y=4470.522mil|Location2.Y=4509.892mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2438.012mil|Location2.X=2554.409mil|Location1.Y=4470.522mil|Location2.Y=4509.892mil|Absolute=True">Un-Routed Net Constraint: Net TS- Between Pad R13-1(62.376mm,114.051mm) on Top Layer And Pad D1-1(64.582mm,114.051mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2568.189mil|Location2.X=2787.5mil|Location1.Y=4200.709mil|Location2.Y=4604.38mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2568.189mil|Location2.X=2787.5mil|Location1.Y=4200.709mil|Location2.Y=4604.38mil|Absolute=True">Un-Routed Net Constraint: Net GATE Between Pad D1-3(65.532mm,116.451mm) on Top Layer And Pad Q1-1(70.104mm,107.841mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2438.012mil|Location2.X=2591.811mil|Location1.Y=4541.388mil|Location2.Y=4604.38mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2438.012mil|Location2.X=2591.811mil|Location1.Y=4541.388mil|Location2.Y=4604.38mil|Absolute=True">Un-Routed Net Constraint: Net GATE Between Pad R13-2(62.376mm,115.851mm) on Top Layer And Pad D1-3(65.532mm,116.451mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2568.189mil|Location2.X=2663.465mil|Location1.Y=4565.01mil|Location2.Y=5340.63mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2568.189mil|Location2.X=2663.465mil|Location1.Y=4565.01mil|Location2.Y=5340.63mil|Absolute=True">Un-Routed Net Constraint: Net GATE Between Pad D1-3(65.532mm,116.451mm) on Top Layer And Pad R9-1(66.802mm,135.077mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1934.065mil|Location2.X=2042.333mil|Location1.Y=4408.307mil|Location2.Y=4507.923mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1934.065mil|Location2.X=2042.333mil|Location1.Y=4408.307mil|Location2.Y=4507.923mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad D2-1(49.525mm,112.371mm) on Top Layer And Pad U1-2(51.225mm,114.051mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1997.057mil|Location2.X=2036.427mil|Location1.Y=4347.284mil|Location2.Y=4439.803mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1997.057mil|Location2.X=2036.427mil|Location1.Y=4347.284mil|Location2.Y=4439.803mil|Absolute=True">Un-Routed Net Constraint: Net NetD2_2 Between Pad D2-2(51.125mm,112.371mm) on Top Layer And Pad R12-1(51.225mm,110.871mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2737.992mil|Location2.X=3140.768mil|Location1.Y=4377.402mil|Location2.Y=4620.709mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2737.992mil|Location2.X=3140.768mil|Location1.Y=4377.402mil|Location2.Y=4620.709mil|Absolute=True">Un-Routed Net Constraint: Net NetQ1_4 Between Pad Q1-4(72.39mm,114.276mm) on Top Layer And Pad R8-2(79.176mm,114.165mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1926.191mil|Location2.X=2036.427mil|Location1.Y=4288.228mil|Location2.Y=4382.717mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1926.191mil|Location2.X=2036.427mil|Location1.Y=4288.228mil|Location2.Y=4382.717mil|Absolute=True">Un-Routed Net Constraint: Net SC_END Between Pad R12-2(49.425mm,110.871mm) on Top Layer And Pad R10-1(51.225mm,109.371mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1926.191mil|Location2.X=2042.333mil|Location1.Y=4288.228mil|Location2.Y=4607.923mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1926.191mil|Location2.X=2042.333mil|Location1.Y=4288.228mil|Location2.Y=4607.923mil|Absolute=True">Un-Routed Net Constraint: Net NetR10_2 Between Pad R10-2(49.425mm,109.371mm) on Top Layer And Pad U1-1(51.225mm,116.591mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4726.535mil|Location2.X=4963.465mil|Location1.Y=5295.354mil|Location2.Y=5464.646mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4726.535mil|Location2.X=4963.465mil|Location1.Y=5295.354mil|Location2.Y=5464.646mil|Absolute=True">Un-Routed Net Constraint: Net NetR1_1 Between Pad R2-2(120.904mm,138.227mm) on Top Layer And Pad R1-1(125.222mm,135.077mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2365.168mil|Location2.X=2473.445mil|Location1.Y=4470.522mil|Location2.Y=4509.892mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2365.168mil|Location2.X=2473.445mil|Location1.Y=4470.522mil|Location2.Y=4509.892mil|Absolute=True">Un-Routed Net Constraint: Net TS- Between Pad U1-3(60.725mm,114.051mm) on Top Layer And Pad R13-1(62.376mm,114.051mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2365.168mil|Location2.X=2473.445mil|Location1.Y=4541.388mil|Location2.Y=4607.923mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2365.168mil|Location2.X=2473.445mil|Location1.Y=4541.388mil|Location2.Y=4607.923mil|Absolute=True">Un-Routed Net Constraint: Net GATE Between Pad U1-4(60.725mm,116.591mm) on Top Layer And Pad R13-2(62.376mm,115.851mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4556.535mil|Location2.X=4793.465mil|Location1.Y=5295.354mil|Location2.Y=5464.646mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4556.535mil|Location2.X=4793.465mil|Location1.Y=5295.354mil|Location2.Y=5464.646mil|Absolute=True">Un-Routed Net Constraint: Net NetR2_1 Between Pad R3-2(116.586mm,138.227mm) on Top Layer And Pad R2-1(120.904mm,135.077mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4386.535mil|Location2.X=4623.465mil|Location1.Y=5295.354mil|Location2.Y=5464.646mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4386.535mil|Location2.X=4623.465mil|Location1.Y=5295.354mil|Location2.Y=5464.646mil|Absolute=True">Un-Routed Net Constraint: Net NetR3_1 Between Pad R4-2(112.268mm,138.227mm) on Top Layer And Pad R3-1(116.586mm,135.077mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3641.535mil|Location2.X=4453.465mil|Location1.Y=5295.354mil|Location2.Y=5464.646mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3641.535mil|Location2.X=4453.465mil|Location1.Y=5295.354mil|Location2.Y=5464.646mil|Absolute=True">Un-Routed Net Constraint: Net NetR4_1 Between Pad R5-2(93.345mm,138.227mm) on Top Layer And Pad R4-1(112.268mm,135.077mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3486.535mil|Location2.X=3708.465mil|Location1.Y=5295.354mil|Location2.Y=5821.654mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3486.535mil|Location2.X=3708.465mil|Location1.Y=5295.354mil|Location2.Y=5821.654mil|Absolute=True">Un-Routed Net Constraint: Net NetR5_1 Between Pad R6-2(89.408mm,147.295mm) on Top Layer And Pad R5-1(93.345mm,135.077mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3306.535mil|Location2.X=3553.465mil|Location1.Y=5601.378mil|Location2.Y=5697.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3306.535mil|Location2.X=3553.465mil|Location1.Y=5601.378mil|Location2.Y=5697.638mil|Absolute=True">Un-Routed Net Constraint: Net NetR6_1 Between Pad R7-2(84.836mm,142.85mm) on Top Layer And Pad R6-1(89.408mm,144.145mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2596.535mil|Location2.X=3373.465mil|Location1.Y=5419.37mil|Location2.Y=5522.638mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2596.535mil|Location2.X=3373.465mil|Location1.Y=5419.37mil|Location2.Y=5522.638mil|Absolute=True">Un-Routed Net Constraint: Net NetR7_1 Between Pad R9-2(66.802mm,138.227mm) on Top Layer And Pad R7-1(84.836mm,139.7mm) on Top Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDNO0GYLU3MINXEVNBLK1IDTME5JCR2VKKNIQC4SE1AGZJ555D4HFD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2038.246mil|Location2.X=2045.912mil|Location1.Y=4421.265mil|Location2.Y=4428.932mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2038.246mil|Location2.X=2045.912mil|Location1.Y=4421.265mil|Location2.Y=4428.932mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "+" (52.425mm,112.071mm) on Top Overlay And Text "R10" (48.844mm,110.896mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2034.444mil|Location2.X=2042.111mil|Location1.Y=4421.265mil|Location2.Y=4428.932mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2034.444mil|Location2.X=2042.111mil|Location1.Y=4421.265mil|Location2.Y=4428.932mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "+" (52.425mm,112.071mm) on Top Overlay And Text "R12" (48.844mm,112.42mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2501.144mil|Location2.X=2508.811mil|Location1.Y=4679.299mil|Location2.Y=4686.966mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2501.144mil|Location2.X=2508.811mil|Location1.Y=4679.299mil|Location2.Y=4686.966mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "D1" (63.729mm,117.969mm) on Top Overlay And Text "R13" (61.849mm,117.428mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1931.167mil|Location2.X=1938.833mil|Location1.Y=4482.147mil|Location2.Y=4489.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1931.167mil|Location2.X=1938.833mil|Location1.Y=4482.147mil|Location2.Y=4489.814mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "D2" (49.149mm,113.817mm) on Top Overlay And Text "R12" (48.844mm,112.42mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1919.167mil|Location2.X=1926.833mil|Location1.Y=4422.167mil|Location2.Y=4429.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1919.167mil|Location2.X=1926.833mil|Location1.Y=4422.167mil|Location2.Y=4429.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R10" (48.844mm,110.896mm) on Top Overlay And Text "R12" (48.844mm,112.42mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1914.484mil|Location2.X=1922.15mil|Location1.Y=4381.167mil|Location2.Y=4388.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1914.484mil|Location2.X=1922.15mil|Location1.Y=4381.167mil|Location2.Y=4388.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R10" (48.844mm,110.896mm) on Top Overlay And Track (48.725mm,111.379mm)(48.725mm,111.571mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1919.167mil|Location2.X=1926.833mil|Location1.Y=4388.726mil|Location2.Y=4396.392mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1919.167mil|Location2.X=1926.833mil|Location1.Y=4388.726mil|Location2.Y=4396.392mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R10" (48.844mm,110.896mm) on Top Overlay And Track (48.725mm,111.571mm)(51.925mm,111.571mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1977.476mil|Location2.X=1985.142mil|Location1.Y=4362.167mil|Location2.Y=4369.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1977.476mil|Location2.X=1985.142mil|Location1.Y=4362.167mil|Location2.Y=4369.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R10" (48.844mm,110.896mm) on Top Overlay And Track (50.325mm,110.171mm)(50.325mm,111.571mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2034.031mil|Location2.X=2045.281mil|Location1.Y=4379.375mil|Location2.Y=4390.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2034.031mil|Location2.X=2045.281mil|Location1.Y=4379.375mil|Location2.Y=4390.625mil|Absolute=True">Silk To Silk Clearance Constraint: (0.086mm &lt; 0.254mm) Between Text "R10" (48.844mm,110.896mm) on Top Overlay And Track (51.925mm,111.379mm)(51.925mm,111.571mm) on Top Overlay Silk Text to Silk Clearance [0.086mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2112.594mil|Location2.X=2120.261mil|Location1.Y=3759.167mil|Location2.Y=3766.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2112.594mil|Location2.X=2120.261mil|Location1.Y=3759.167mil|Location2.Y=3766.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R11" (50.673mm,95.58mm) on Top Overlay And Track (53.757mm,95.015mm)(53.757mm,105.315mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2054.248mil|Location2.X=2061.914mil|Location1.Y=4455.665mil|Location2.Y=4463.332mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2054.248mil|Location2.X=2061.914mil|Location1.Y=4455.665mil|Location2.Y=4463.332mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R12" (48.844mm,112.42mm) on Top Overlay And Track (52.275mm,113.271mm)(52.275mm,117.371mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2062.629mil|Location2.X=2070.296mil|Location1.Y=4455.665mil|Location2.Y=4463.332mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2062.629mil|Location2.X=2070.296mil|Location1.Y=4455.665mil|Location2.Y=4463.332mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R12" (48.844mm,112.42mm) on Top Overlay And Track (52.275mm,113.271mm)(59.675mm,113.271mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDYR5JJKWPR5J5FNOVGNC03DDV4NCLRJ5BZ4MNW0F13QBTF0DPUGUE"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Board Clearance Constraint (Gap=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4926.167mil|Location2.X=4933.833mil|Location1.Y=5314.159mil|Location2.Y=5321.825mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4926.167mil|Location2.X=4933.833mil|Location1.Y=5314.159mil|Location2.Y=5321.825mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R1-1(125.222mm,135.077mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4926.167mil|Location2.X=4933.833mil|Location1.Y=5438.175mil|Location2.Y=5445.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4926.167mil|Location2.X=4933.833mil|Location1.Y=5438.175mil|Location2.Y=5445.841mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R1-2(125.222mm,138.227mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4756.167mil|Location2.X=4763.833mil|Location1.Y=5314.159mil|Location2.Y=5321.825mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4756.167mil|Location2.X=4763.833mil|Location1.Y=5314.159mil|Location2.Y=5321.825mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R2-1(120.904mm,135.077mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4756.167mil|Location2.X=4763.833mil|Location1.Y=5438.175mil|Location2.Y=5445.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4756.167mil|Location2.X=4763.833mil|Location1.Y=5438.175mil|Location2.Y=5445.841mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R2-2(120.904mm,138.227mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4586.167mil|Location2.X=4593.833mil|Location1.Y=5314.159mil|Location2.Y=5321.825mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4586.167mil|Location2.X=4593.833mil|Location1.Y=5314.159mil|Location2.Y=5321.825mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R3-1(116.586mm,135.077mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4586.167mil|Location2.X=4593.833mil|Location1.Y=5438.175mil|Location2.Y=5445.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4586.167mil|Location2.X=4593.833mil|Location1.Y=5438.175mil|Location2.Y=5445.841mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R3-2(116.586mm,138.227mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4416.167mil|Location2.X=4423.833mil|Location1.Y=5314.159mil|Location2.Y=5321.825mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4416.167mil|Location2.X=4423.833mil|Location1.Y=5314.159mil|Location2.Y=5321.825mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R4-1(112.268mm,135.077mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4416.167mil|Location2.X=4423.833mil|Location1.Y=5438.175mil|Location2.Y=5445.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4416.167mil|Location2.X=4423.833mil|Location1.Y=5438.175mil|Location2.Y=5445.841mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R4-2(112.268mm,138.227mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3671.167mil|Location2.X=3678.833mil|Location1.Y=5314.159mil|Location2.Y=5321.825mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3671.167mil|Location2.X=3678.833mil|Location1.Y=5314.159mil|Location2.Y=5321.825mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R5-1(93.345mm,135.077mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3671.167mil|Location2.X=3678.833mil|Location1.Y=5438.175mil|Location2.Y=5445.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3671.167mil|Location2.X=3678.833mil|Location1.Y=5438.175mil|Location2.Y=5445.841mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R5-2(93.345mm,138.227mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.167mil|Location2.X=3523.833mil|Location1.Y=5671.167mil|Location2.Y=5678.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.167mil|Location2.X=3523.833mil|Location1.Y=5671.167mil|Location2.Y=5678.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R6-1(89.408mm,144.145mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.167mil|Location2.X=3523.833mil|Location1.Y=5795.182mil|Location2.Y=5802.849mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.167mil|Location2.X=3523.833mil|Location1.Y=5795.182mil|Location2.Y=5802.849mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R6-2(89.408mm,147.295mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3336.167mil|Location2.X=3343.833mil|Location1.Y=5496.167mil|Location2.Y=5503.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3336.167mil|Location2.X=3343.833mil|Location1.Y=5496.167mil|Location2.Y=5503.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R7-1(84.836mm,139.7mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3336.167mil|Location2.X=3343.833mil|Location1.Y=5620.182mil|Location2.Y=5627.849mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3336.167mil|Location2.X=3343.833mil|Location1.Y=5620.182mil|Location2.Y=5627.849mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R7-2(84.836mm,142.85mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2626.167mil|Location2.X=2633.833mil|Location1.Y=5314.159mil|Location2.Y=5321.825mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2626.167mil|Location2.X=2633.833mil|Location1.Y=5314.159mil|Location2.Y=5321.825mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R9-1(66.802mm,135.077mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2626.167mil|Location2.X=2633.833mil|Location1.Y=5438.175mil|Location2.Y=5445.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2626.167mil|Location2.X=2633.833mil|Location1.Y=5438.175mil|Location2.Y=5445.841mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Pad R9-2(66.802mm,138.227mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4930.154mil|Location2.X=4937.82mil|Location1.Y=5535.157mil|Location2.Y=5542.824mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4930.154mil|Location2.X=4937.82mil|Location1.Y=5535.157mil|Location2.Y=5542.824mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Text "R1" (124.308mm,139.929mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4770.15mil|Location2.X=4777.817mil|Location1.Y=5535.157mil|Location2.Y=5542.824mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4770.15mil|Location2.X=4777.817mil|Location1.Y=5535.157mil|Location2.Y=5542.824mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Text "R2" (119.99mm,139.929mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4600.15mil|Location2.X=4607.817mil|Location1.Y=5535.157mil|Location2.Y=5542.824mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4600.15mil|Location2.X=4607.817mil|Location1.Y=5535.157mil|Location2.Y=5542.824mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Text "R3" (115.672mm,139.929mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4430.15mil|Location2.X=4437.817mil|Location1.Y=5535.157mil|Location2.Y=5542.824mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4430.15mil|Location2.X=4437.817mil|Location1.Y=5535.157mil|Location2.Y=5542.824mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Text "R4" (111.354mm,139.929mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3685.151mil|Location2.X=3692.817mil|Location1.Y=5535.157mil|Location2.Y=5542.824mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3685.151mil|Location2.X=3692.817mil|Location1.Y=5535.157mil|Location2.Y=5542.824mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Text "R5" (92.431mm,139.929mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3530.151mil|Location2.X=3537.817mil|Location1.Y=5892.157mil|Location2.Y=5899.824mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3530.151mil|Location2.X=3537.817mil|Location1.Y=5892.157mil|Location2.Y=5899.824mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Text "R6" (88.494mm,148.996mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3350.151mil|Location2.X=3357.817mil|Location1.Y=5717.157mil|Location2.Y=5724.824mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3350.151mil|Location2.X=3357.817mil|Location1.Y=5717.157mil|Location2.Y=5724.824mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Text "R7" (83.922mm,144.551mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2640.151mil|Location2.X=2647.817mil|Location1.Y=5535.157mil|Location2.Y=5542.824mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2640.151mil|Location2.X=2647.817mil|Location1.Y=5535.157mil|Location2.Y=5542.824mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Text "R9" (65.888mm,139.929mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4372.86mil|Location2.X=4380.526mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4372.86mil|Location2.X=4380.526mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (111.168mm,134.252mm)(111.168mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4378.765mil|Location2.X=4386.432mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4378.765mil|Location2.X=4386.432mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (111.168mm,134.252mm)(111.468mm,134.252mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4416.167mil|Location2.X=4423.833mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4416.167mil|Location2.X=4423.833mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (111.168mm,136.652mm)(113.368mm,136.652mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4378.765mil|Location2.X=4386.432mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4378.765mil|Location2.X=4386.432mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (111.168mm,139.052mm)(111.468mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4453.568mil|Location2.X=4461.235mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4453.568mil|Location2.X=4461.235mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (113.068mm,134.252mm)(113.368mm,134.252mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4453.568mil|Location2.X=4461.235mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4453.568mil|Location2.X=4461.235mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (113.068mm,139.052mm)(113.368mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4459.474mil|Location2.X=4467.14mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4459.474mil|Location2.X=4467.14mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (113.368mm,134.252mm)(113.368mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4542.86mil|Location2.X=4550.526mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4542.86mil|Location2.X=4550.526mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (115.486mm,134.252mm)(115.486mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4548.765mil|Location2.X=4556.432mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4548.765mil|Location2.X=4556.432mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (115.486mm,134.252mm)(115.786mm,134.252mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4586.167mil|Location2.X=4593.833mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4586.167mil|Location2.X=4593.833mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (115.486mm,136.652mm)(117.686mm,136.652mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4548.765mil|Location2.X=4556.432mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4548.765mil|Location2.X=4556.432mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (115.486mm,139.052mm)(115.786mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4623.568mil|Location2.X=4631.235mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4623.568mil|Location2.X=4631.235mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (117.386mm,134.252mm)(117.686mm,134.252mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4623.568mil|Location2.X=4631.235mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4623.568mil|Location2.X=4631.235mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (117.386mm,139.052mm)(117.686mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4629.474mil|Location2.X=4637.14mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4629.474mil|Location2.X=4637.14mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (117.686mm,134.252mm)(117.686mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4712.86mil|Location2.X=4720.526mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4712.86mil|Location2.X=4720.526mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (119.804mm,134.252mm)(119.804mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4718.765mil|Location2.X=4726.432mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4718.765mil|Location2.X=4726.432mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (119.804mm,134.252mm)(120.104mm,134.252mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4756.167mil|Location2.X=4763.833mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4756.167mil|Location2.X=4763.833mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (119.804mm,136.652mm)(122.004mm,136.652mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4718.765mil|Location2.X=4726.432mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4718.765mil|Location2.X=4726.432mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (119.804mm,139.052mm)(120.104mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4793.568mil|Location2.X=4801.235mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4793.568mil|Location2.X=4801.235mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (121.704mm,134.252mm)(122.004mm,134.252mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4793.568mil|Location2.X=4801.235mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4793.568mil|Location2.X=4801.235mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (121.704mm,139.052mm)(122.004mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4799.474mil|Location2.X=4807.14mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4799.474mil|Location2.X=4807.14mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (122.004mm,134.252mm)(122.004mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4882.86mil|Location2.X=4890.526mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4882.86mil|Location2.X=4890.526mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (124.122mm,134.252mm)(124.122mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4888.765mil|Location2.X=4896.432mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4888.765mil|Location2.X=4896.432mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (124.122mm,134.252mm)(124.422mm,134.252mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4926.167mil|Location2.X=4933.833mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4926.167mil|Location2.X=4933.833mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (124.122mm,136.652mm)(126.322mm,136.652mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4888.765mil|Location2.X=4896.432mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4888.765mil|Location2.X=4896.432mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (124.122mm,139.052mm)(124.422mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4963.568mil|Location2.X=4971.235mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4963.568mil|Location2.X=4971.235mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (126.022mm,134.252mm)(126.322mm,134.252mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4963.568mil|Location2.X=4971.235mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4963.568mil|Location2.X=4971.235mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (126.022mm,139.052mm)(126.322mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4969.474mil|Location2.X=4977.14mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4969.474mil|Location2.X=4977.14mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (126.322mm,134.252mm)(126.322mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2582.86mil|Location2.X=2590.526mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2582.86mil|Location2.X=2590.526mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (65.702mm,134.252mm)(65.702mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2588.765mil|Location2.X=2596.432mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2588.765mil|Location2.X=2596.432mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (65.702mm,134.252mm)(66.002mm,134.252mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2626.167mil|Location2.X=2633.833mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2626.167mil|Location2.X=2633.833mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (65.702mm,136.652mm)(67.902mm,136.652mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2588.765mil|Location2.X=2596.432mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2588.765mil|Location2.X=2596.432mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (65.702mm,139.052mm)(66.002mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2663.568mil|Location2.X=2671.235mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2663.568mil|Location2.X=2671.235mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (67.602mm,134.252mm)(67.902mm,134.252mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2663.568mil|Location2.X=2671.235mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2663.568mil|Location2.X=2671.235mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (67.602mm,139.052mm)(67.902mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2669.474mil|Location2.X=2677.14mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2669.474mil|Location2.X=2677.14mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (67.902mm,134.252mm)(67.902mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3292.86mil|Location2.X=3300.526mil|Location1.Y=5558.175mil|Location2.Y=5565.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3292.86mil|Location2.X=3300.526mil|Location1.Y=5558.175mil|Location2.Y=5565.841mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (83.736mm,138.875mm)(83.736mm,143.675mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3298.765mil|Location2.X=3306.432mil|Location1.Y=5463.686mil|Location2.Y=5471.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3298.765mil|Location2.X=3306.432mil|Location1.Y=5463.686mil|Location2.Y=5471.353mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (83.736mm,138.875mm)(84.036mm,138.875mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3336.167mil|Location2.X=3343.833mil|Location1.Y=5558.175mil|Location2.Y=5565.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3336.167mil|Location2.X=3343.833mil|Location1.Y=5558.175mil|Location2.Y=5565.841mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (83.736mm,141.275mm)(85.936mm,141.275mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3298.765mil|Location2.X=3306.432mil|Location1.Y=5652.663mil|Location2.Y=5660.329mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3298.765mil|Location2.X=3306.432mil|Location1.Y=5652.663mil|Location2.Y=5660.329mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (83.736mm,143.675mm)(84.036mm,143.675mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3373.568mil|Location2.X=3381.235mil|Location1.Y=5463.686mil|Location2.Y=5471.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3373.568mil|Location2.X=3381.235mil|Location1.Y=5463.686mil|Location2.Y=5471.353mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (85.636mm,138.875mm)(85.936mm,138.875mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3373.568mil|Location2.X=3381.235mil|Location1.Y=5652.663mil|Location2.Y=5660.329mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3373.568mil|Location2.X=3381.235mil|Location1.Y=5652.663mil|Location2.Y=5660.329mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (85.636mm,143.675mm)(85.936mm,143.675mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3379.474mil|Location2.X=3387.14mil|Location1.Y=5558.175mil|Location2.Y=5565.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3379.474mil|Location2.X=3387.14mil|Location1.Y=5558.175mil|Location2.Y=5565.841mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (85.936mm,138.875mm)(85.936mm,143.675mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3472.86mil|Location2.X=3480.526mil|Location1.Y=5733.175mil|Location2.Y=5740.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3472.86mil|Location2.X=3480.526mil|Location1.Y=5733.175mil|Location2.Y=5740.841mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (88.308mm,143.32mm)(88.308mm,148.12mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3478.765mil|Location2.X=3486.432mil|Location1.Y=5638.686mil|Location2.Y=5646.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3478.765mil|Location2.X=3486.432mil|Location1.Y=5638.686mil|Location2.Y=5646.353mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (88.308mm,143.32mm)(88.608mm,143.32mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.167mil|Location2.X=3523.833mil|Location1.Y=5733.175mil|Location2.Y=5740.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3516.167mil|Location2.X=3523.833mil|Location1.Y=5733.175mil|Location2.Y=5740.841mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (88.308mm,145.72mm)(90.508mm,145.72mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3478.765mil|Location2.X=3486.432mil|Location1.Y=5827.663mil|Location2.Y=5835.329mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3478.765mil|Location2.X=3486.432mil|Location1.Y=5827.663mil|Location2.Y=5835.329mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (88.308mm,148.12mm)(88.608mm,148.12mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3553.568mil|Location2.X=3561.235mil|Location1.Y=5638.686mil|Location2.Y=5646.353mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3553.568mil|Location2.X=3561.235mil|Location1.Y=5638.686mil|Location2.Y=5646.353mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (90.208mm,143.32mm)(90.508mm,143.32mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3553.568mil|Location2.X=3561.235mil|Location1.Y=5827.663mil|Location2.Y=5835.329mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3553.568mil|Location2.X=3561.235mil|Location1.Y=5827.663mil|Location2.Y=5835.329mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (90.208mm,148.12mm)(90.508mm,148.12mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3559.474mil|Location2.X=3567.14mil|Location1.Y=5733.175mil|Location2.Y=5740.841mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3559.474mil|Location2.X=3567.14mil|Location1.Y=5733.175mil|Location2.Y=5740.841mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (90.508mm,143.32mm)(90.508mm,148.12mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3627.86mil|Location2.X=3635.526mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3627.86mil|Location2.X=3635.526mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (92.245mm,134.252mm)(92.245mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3633.765mil|Location2.X=3641.432mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3633.765mil|Location2.X=3641.432mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (92.245mm,134.252mm)(92.545mm,134.252mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3671.167mil|Location2.X=3678.833mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3671.167mil|Location2.X=3678.833mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (92.245mm,136.652mm)(94.445mm,136.652mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3633.765mil|Location2.X=3641.432mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3633.765mil|Location2.X=3641.432mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (92.245mm,139.052mm)(92.545mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3708.568mil|Location2.X=3716.235mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3708.568mil|Location2.X=3716.235mil|Location1.Y=5281.678mil|Location2.Y=5289.345mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (94.145mm,134.252mm)(94.445mm,134.252mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3708.568mil|Location2.X=3716.235mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3708.568mil|Location2.X=3716.235mil|Location1.Y=5470.655mil|Location2.Y=5478.322mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (94.145mm,139.052mm)(94.445mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3714.474mil|Location2.X=3722.14mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\baltic-discharge-tsmp\discharge-tsmp.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3714.474mil|Location2.X=3722.14mil|Location1.Y=5376.167mil|Location2.Y=5383.833mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (94.445mm,134.252mm)(94.445mm,139.052mm) on Top Overlay </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
