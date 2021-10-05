@@ -1,0 +1,12 @@
+Output: NC Drill Files
+Type  : NC Drill
+From  : PCB Document [discharge-tsmp.PcbDoc]
+   Generated File[discharge-tsmp.TXT]
+   Generated File[discharge-tsmp.LDP]
+   Generated File[discharge-tsmp.DRR]
+
+
+Files Generated   : 3
+Documents Printed : 0
+
+Finished Output Generation At 20:36:23 On 05.10.2021
