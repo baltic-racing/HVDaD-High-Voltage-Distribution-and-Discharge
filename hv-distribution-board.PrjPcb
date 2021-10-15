@@ -160,70 +160,6 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=FHBJYPJK
 
-[GeneratedDocument1]
-DocumentPath=Project Outputs for discharge-tsmp-board\Design Rule Check - discharge-tsmp.html
-DItemRevisionGUID=
-
-[GeneratedDocument2]
-DocumentPath=gerbers\JLC_GERBERS\discharge-tsmp.DRR
-DItemRevisionGUID=
-
-[GeneratedDocument3]
-DocumentPath=gerbers\JLC_GERBERS\discharge-tsmp.EXTREP
-DItemRevisionGUID=
-
-[GeneratedDocument4]
-DocumentPath=gerbers\JLC_GERBERS\discharge-tsmp.GBL
-DItemRevisionGUID=
-
-[GeneratedDocument5]
-DocumentPath=gerbers\JLC_GERBERS\discharge-tsmp.GBO
-DItemRevisionGUID=
-
-[GeneratedDocument6]
-DocumentPath=gerbers\JLC_GERBERS\discharge-tsmp.GBS
-DItemRevisionGUID=
-
-[GeneratedDocument7]
-DocumentPath=gerbers\JLC_GERBERS\discharge-tsmp.GKO
-DItemRevisionGUID=
-
-[GeneratedDocument8]
-DocumentPath=gerbers\JLC_GERBERS\discharge-tsmp.GM1
-DItemRevisionGUID=
-
-[GeneratedDocument9]
-DocumentPath=gerbers\JLC_GERBERS\discharge-tsmp.GM13
-DItemRevisionGUID=
-
-[GeneratedDocument10]
-DocumentPath=gerbers\JLC_GERBERS\discharge-tsmp.GTL
-DItemRevisionGUID=
-
-[GeneratedDocument11]
-DocumentPath=gerbers\JLC_GERBERS\discharge-tsmp.GTO
-DItemRevisionGUID=
-
-[GeneratedDocument12]
-DocumentPath=gerbers\JLC_GERBERS\discharge-tsmp.GTS
-DItemRevisionGUID=
-
-[GeneratedDocument13]
-DocumentPath=gerbers\JLC_GERBERS\discharge-tsmp.LDP
-DItemRevisionGUID=
-
-[GeneratedDocument14]
-DocumentPath=gerbers\JLC_GERBERS\discharge-tsmp.REP
-DItemRevisionGUID=
-
-[GeneratedDocument15]
-DocumentPath=gerbers\JLC_GERBERS\discharge-tsmp.RUL
-DItemRevisionGUID=
-
-[GeneratedDocument16]
-DocumentPath=gerbers\JLC_GERBERS\discharge-tsmp.TXT
-DItemRevisionGUID=
-
 [Parameter1]
 Name=Organization
 Value=Baltic Racing
@@ -347,7 +283,7 @@ OutputDefault20=0
 [OutputGroup2]
 Name=Simulator Outputs
 Description=
-TargetPrinter=HP83A84D (HP OfficeJet Pro 8710)
+TargetPrinter=Microsoft Print to PDF
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 
 [OutputGroup3]
