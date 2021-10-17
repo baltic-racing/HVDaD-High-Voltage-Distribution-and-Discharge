@@ -1,12 +1,16 @@
 Discharge:
-- Spannungsteiler HVDistri platine -> Berechnung
-- 240 uF -> wo kommen die her bitte angeben
-- warum 550V ?
-- Ich empfhele relevante Datenbl�tter mit in die repo zu packen und in den Note via relative Pfade zu verlinken.
+>- Spannungsteiler HVDistri platine -> Berechnung
+>- 240 uF -> wo kommen die her bitte angeben
+>- warum 550V ?
+>- Ich empfehle relevante Datenblaetter mit in die repo zu packen und in den Note via relative Pfade zu verlinken.
 
 Voltage detection:
-- Forward current zu collector current -> ist das mit 30k Ohm nicht etwas wenig? Bitte ggf Berechnung oder Begr�ndung beifügen
-- Calculation bitte ewas ausführlicher
+>- Forward current zu collector current -> ist das mit 30k Ohm nicht etwas wenig? Bitte ggf Berechnung oder Begr�ndung beifügen
+>- Calculation bitte ewas ausführlicher
 
 Allgemein:
-- Bauteilschriften überschneoiden sich teilweise -> bitte etwas sch�ner machen
+>- Bauteilschriften überschneoiden sich teilweise -> bitte etwas sch�ner machen
+
+Review Nummer 2:
+- PTC Worst case berechnung -> Toleranz des Widerstands
+- PTCEL13 kann keine 2.5 load dumps. Bitte nochmal diagramm checken
