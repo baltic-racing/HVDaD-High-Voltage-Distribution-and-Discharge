@@ -1,0 +1,12 @@
+Discharge:
+- Spannungsteiler HVDistri platine -> Berechnung
+- 240 uF -> wo kommen die her bitte angeben
+- warum 550V ?
+- Ich empfhele relevante Datenblätter mit in die repo zu packen und in den Note via relative Pfade zu verlinken.
+
+Voltage detection:
+- Forward current zu collector current -> ist das mit 30k Ohm nicht etwas wenig? Bitte ggf Berechnung oder Begründung beifügen
+- Calculation bitte ewas ausführlicher
+
+Allgemein:
+- Bauteilschriften überschneoiden sich teilweise -> bitte etwas schöner machen 
