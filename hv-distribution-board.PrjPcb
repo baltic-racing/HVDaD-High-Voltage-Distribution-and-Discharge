@@ -177,6 +177,10 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=FHBJYPJK
 
+[GeneratedDocument1]
+DocumentPath=Project Outputs for hv-distribution-board\Design Rule Check - hv-distribution-board.html
+DItemRevisionGUID=
+
 [Parameter1]
 Name=BoardRevision
 Value=1.1

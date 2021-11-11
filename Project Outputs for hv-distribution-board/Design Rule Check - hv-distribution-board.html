@@ -1,0 +1,496 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD21\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">11.11.2021</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">19:14:13</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc" class="file"><acronym title="C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc">C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">36</td></tr>
+</table>
+</td>
+</table><a name="IDSGQDAO3SIZ4BNW3NG2KXX3IOLMZTNQNJ4ON22XDSHAGV0C3VFPMK"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0IUCLRQQ53KVGNOHHYDEPEYBFM4VSUOLTQXKNXGZZ35HCOUM3JGM">Clearance Constraint (Gap=0.152mm) (InNet('TS-')),(InNet('GATE'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDA1ZPCEVDCVHOCYXPO3CROMWMEKUCMYHUDAZVIIHTORLLNRPX4Q5P">Clearance Constraint (Gap=3mm) (InNetClass('TS')),(InNetClass('TS'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBXILI5CWU5MUBSZ0J5Q3PS2LDPHAY552CRBKZZOM14Y0XNKGSADI">Clearance Constraint (Gap=0.152mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIZZYFOWED2RFODEK5I2VC1LBDLWOCEGUYZSEVZJBWSGSM1AY4WQL">Clearance Constraint (Gap=4mm) (InNetClass('GLVS')),(InNetClass('TS') OR InNetClass('TS_IM') OR InNetClass('TS_COMP'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDNOB4MN5UVWNYEI52DHVTFH12BLVP0JSHK4KVPZMHHC3XO0MO121P">Clearance Constraint (Gap=4mm) (InNetClass('TS_COMP')),((InNetClass('TS') OR InNetClass('TS_IM')) AND NOT (InNet('GATE') OR InNet('TS-')))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDOQVF5KBODF0RGUFU54VB203NHCSGZC0MZNAOBILOBJWOIDSHCNML">Clearance Constraint (Gap=2mm) (InNetClass('TS_IM')),(InNetClass('TS_IM'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFWOOK4FHEIEZOVAKFATIVPXKXOJLHFQUJYXIGKHN0UZFMCA1F1FF">Clearance Constraint (Gap=2mm) (InNetClass('TS_VD')),(InNetClass('TS_VD'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID30SVKXEUTV3YKP5ZEPMUDW23NNATG1FF1MTORVNESEV4XCZ5P5HD">Clearance Constraint (Gap=0.152mm) (InNetClass('TS_COMP')),(InNetClass('TS_COMP') AND NOT InNet('TS+'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDSDBIIISOK4YGOM0VXZHYY0U5ID3SPKI2UCIREJPGK3M2I2ZGTQNL">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDL31LDQKDXCB5PBO4V2XZ0ZSDN5BOWNITJJK4GEXRP0LHAWFR1BG">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID50I32C2ESI4YGYA2NCWRFZ3VBMCMFAZSZGS5ZQEHLKXVD5KE5HO">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLOKQ2BWPBCBSCL20UKYIFVTAKZGMTRNERIBIKCE31ZMFWMMIIWL">Width Constraint (Min=0.152mm) (Max=1.219mm) (Preferred=0.305mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID113IJFDWLWUVK51FHM4MFY5NAHNXYIKPSARYDPLEUSYGWGOMF23P">SMD To Corner (Distance=0.152mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDFRFJGRFI0JVIFRIYRSXYXRLSGG0OWGH5FLONFEJMQN0P34AK0WRK">SMD Entry (Side = Allowed) (Corner = Allowed) (Any Angle = Allowed) (Ignore First Corner = Allowed)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4QDF1EDHWM2UPXG03QC2UHNSOPPABPBCFSGSWCLOJVNJMHZ2JTLF">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDHNLV5GG10DAAB42JMO03TB0TCPGALFWB0HII1MJJYP5QKUHJJRXI">Minimum Annular Ring (Minimum=0.17mm) (All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLXLI3WBVHUR0P0EKPOGXCWCZZNG0OHQO42Q4ZYJ3GVR3SXCG0SKJ">Acute Angle Constraint (Minimum=45.000) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPXAEM22IIQYZOMAGPQC1B31AWWAHS0ACKR341NZPGADNO5S5K">Hole Size Constraint (Min=0.2mm) (Max=7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4KAMPQIGN5ZVFZ3YAJJT2IDJUOWCYFQGDLWCVAE2BD5X4OY5KP0F">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLHAPHUZ0YGPCPPLBAOYTPRRE2FO0GKNMH3N0NGDCYDXSPMB4DSAO">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDL1TX5LBXX31WM2K1YYZAGT2RTH34VZMYUNVDUDI5LOA4Q0A2E0DC">Silk To Solder Mask (Clearance=0.254mm) (Disabled)(All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQHOK4CPH3MT4IF2YWUB2KOSZDI4D31J3STGN0ELNBOVYM3UV230H">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">21</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDD22CGGVSJCCZMOMGEORFLZBFKBLBKPUDLKC4XBKR0YU24QGFDLJ">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRBFXX4H4O2RADFZSJ2W2CUMOTJN0SQNZ3PKI3LOGYR4JUK0WV44F">Board Clearance Constraint (Gap=0mm) (All)</a></td>
+<td class="column2">12</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDQEDQTBIOKRGYIFGCWS2GXTTDTJK3WQ2KMOCXANJAVQ0JMQEKXULN">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">36</td>
+</tr>
+</table><br><a name="IDHNLV5GG10DAAB42JMO03TB0TCPGALFWB0HII1MJJYP5QKUHJJRXI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Annular Ring (Minimum=0.17mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2570.005mil|Location2.X=2577.948mil|Location1.Y=4468.997mil|Location2.Y=4476.94mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2570.005mil|Location2.X=2577.948mil|Location1.Y=4468.997mil|Location2.Y=4476.94mil|Absolute=True">Minimum Annular Ring: (0.155mm &lt; 0.17mm) Via (26.771mm,29.185mm) from Top Layer to Bottom Layer (Annular Ring=0.155mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2570.005mil|Location2.X=2577.948mil|Location1.Y=4974.981mil|Location2.Y=4982.924mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2570.005mil|Location2.X=2577.948mil|Location1.Y=4974.981mil|Location2.Y=4982.924mil|Absolute=True">Minimum Annular Ring: (0.155mm &lt; 0.17mm) Via (26.771mm,42.037mm) from Top Layer to Bottom Layer (Annular Ring=0.155mm) On (Top Layer)</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDLHAPHUZ0YGPCPPLBAOYTPRRE2FO0GKNMH3N0NGDCYDXSPMB4DSAO"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2194.336mil|Location2.X=2205.586mil|Location1.Y=4396.511mil|Location2.Y=4407.761mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2194.336mil|Location2.X=2205.586mil|Location1.Y=4396.511mil|Location2.Y=4407.761mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.212mm &lt; 0.254mm) Between Pad U1-2(17.271mm,28.169mm) on Top Layer And Via (17.271mm,27.187mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.212mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDQHOK4CPH3MT4IF2YWUB2KOSZDI4D31J3STGN0ELNBOVYM3UV230H"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2214.535mil|Location2.X=2225.785mil|Location1.Y=4313.824mil|Location2.Y=4325.074mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2214.535mil|Location2.X=2225.785mil|Location1.Y=4313.824mil|Location2.Y=4325.074mil|Absolute=True">Silk To Silk Clearance Constraint: (0.002mm &lt; 0.254mm) Between Arc (17.144mm,26.105mm) on Bottom Overlay And Text "LV" (17.69mm,25.6mm) on Bottom Overlay Silk Text to Silk Clearance [0.002mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2219.721mil|Location2.X=2230.971mil|Location1.Y=4335.007mil|Location2.Y=4346.257mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2219.721mil|Location2.X=2230.971mil|Location1.Y=4335.007mil|Location2.Y=4346.257mil|Absolute=True">Silk To Silk Clearance Constraint: (0.199mm &lt; 0.254mm) Between Arc (17.144mm,26.105mm) on Top Overlay And Text "LV" (15.151mm,25.559mm) on Top Overlay Silk Text to Silk Clearance [0.199mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2110.864mil|Location2.X=2122.114mil|Location1.Y=4306.698mil|Location2.Y=4317.948mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2110.864mil|Location2.X=2122.114mil|Location1.Y=4306.698mil|Location2.Y=4317.948mil|Absolute=True">Silk To Silk Clearance Constraint: (0.2mm &lt; 0.254mm) Between Text "LV" (15.151mm,25.559mm) on Top Overlay And Track (0mm,25.105mm)(17.144mm,25.105mm) on Top Overlay Silk Text to Silk Clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2112.656mil|Location2.X=2120.322mil|Location1.Y=4384.749mil|Location2.Y=4392.416mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2112.656mil|Location2.X=2120.322mil|Location1.Y=4384.749mil|Location2.Y=4392.416mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "LV" (15.151mm,25.559mm) on Top Overlay And Track (15.059mm,27.269mm)(15.251mm,27.269mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2113.32mil|Location2.X=2126.136mil|Location1.Y=4380.188mil|Location2.Y=4391.438mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2113.32mil|Location2.X=2126.136mil|Location1.Y=4380.188mil|Location2.Y=4391.438mil|Absolute=True">Silk To Silk Clearance Constraint: (0.01mm &lt; 0.254mm) Between Text "LV" (15.151mm,25.559mm) on Top Overlay And Track (15.251mm,27.269mm)(15.251mm,30.469mm) on Top Overlay Silk Text to Silk Clearance [0.01mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2219.769mil|Location2.X=2231.019mil|Location1.Y=4337.131mil|Location2.Y=4348.381mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2219.769mil|Location2.X=2231.019mil|Location1.Y=4337.131mil|Location2.Y=4348.381mil|Absolute=True">Silk To Silk Clearance Constraint: (0.2mm &lt; 0.254mm) Between Text "LV" (15.151mm,25.559mm) on Top Overlay And Track (18.144mm,26.105mm)(18.144mm,47mm) on Top Overlay Silk Text to Silk Clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2220.103mil|Location2.X=2231.353mil|Location1.Y=4664.378mil|Location2.Y=4675.628mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2220.103mil|Location2.X=2231.353mil|Location1.Y=4664.378mil|Location2.Y=4675.628mil|Absolute=True">Silk To Silk Clearance Constraint: (0.183mm &lt; 0.254mm) Between Text "LV" (15.168mm,33.909mm) on Top Overlay And Track (18.144mm,26.105mm)(18.144mm,47mm) on Top Overlay Silk Text to Silk Clearance [0.183mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2220.103mil|Location2.X=2231.353mil|Location1.Y=5089.378mil|Location2.Y=5100.628mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2220.103mil|Location2.X=2231.353mil|Location1.Y=5089.378mil|Location2.Y=5100.628mil|Absolute=True">Silk To Silk Clearance Constraint: (0.183mm &lt; 0.254mm) Between Text "LV" (15.168mm,44.704mm) on Top Overlay And Track (18.144mm,26.105mm)(18.144mm,47mm) on Top Overlay Silk Text to Silk Clearance [0.183mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2189.336mil|Location2.X=2200.586mil|Location1.Y=4307.505mil|Location2.Y=4318.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2189.336mil|Location2.X=2200.586mil|Location1.Y=4307.505mil|Location2.Y=4318.755mil|Absolute=True">Silk To Silk Clearance Constraint: (0.241mm &lt; 0.254mm) Between Text "LV" (17.69mm,25.6mm) on Bottom Overlay And Track (0mm,25.105mm)(17.144mm,25.105mm) on Bottom Overlay Silk Text to Silk Clearance [0.241mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2219.769mil|Location2.X=2231.019mil|Location1.Y=4337.131mil|Location2.Y=4348.381mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2219.769mil|Location2.X=2231.019mil|Location1.Y=4337.131mil|Location2.Y=4348.381mil|Absolute=True">Silk To Silk Clearance Constraint: (0.2mm &lt; 0.254mm) Between Text "LV" (17.69mm,25.6mm) on Bottom Overlay And Track (18.144mm,26.105mm)(18.144mm,47mm) on Bottom Overlay Silk Text to Silk Clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2219.769mil|Location2.X=2231.019mil|Location1.Y=5129.365mil|Location2.Y=5140.615mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2219.769mil|Location2.X=2231.019mil|Location1.Y=5129.365mil|Location2.Y=5140.615mil|Absolute=True">Silk To Silk Clearance Constraint: (0.2mm &lt; 0.254mm) Between Text "LV" (17.69mm,44.704mm) on Bottom Overlay And Track (18.144mm,26.105mm)(18.144mm,47mm) on Bottom Overlay Silk Text to Silk Clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2219.982mil|Location2.X=2231.232mil|Location1.Y=4703.972mil|Location2.Y=4715.222mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2219.982mil|Location2.X=2231.232mil|Location1.Y=4703.972mil|Location2.Y=4715.222mil|Absolute=True">Silk To Silk Clearance Constraint: (0.189mm &lt; 0.254mm) Between Text "LV" (17.701mm,33.899mm) on Bottom Overlay And Track (18.144mm,26.105mm)(18.144mm,47mm) on Bottom Overlay Silk Text to Silk Clearance [0.189mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1999.852mil|Location2.X=2011.102mil|Location1.Y=4508.942mil|Location2.Y=4520.192mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1999.852mil|Location2.X=2011.102mil|Location1.Y=4508.942mil|Location2.Y=4520.192mil|Absolute=True">Silk To Silk Clearance Constraint: (0.096mm &lt; 0.254mm) Between Text "SC_IN" (11.902mm,27.052mm) on Top Overlay And Track (12.454mm,27.269mm)(12.454mm,30.469mm) on Top Overlay Silk Text to Silk Clearance [0.096mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1999.852mil|Location2.X=2011.102mil|Location1.Y=4508.942mil|Location2.Y=4520.192mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1999.852mil|Location2.X=2011.102mil|Location1.Y=4508.942mil|Location2.Y=4520.192mil|Absolute=True">Silk To Silk Clearance Constraint: (0.096mm &lt; 0.254mm) Between Text "SC_IN" (11.902mm,27.052mm) on Top Overlay And Track (12.454mm,30.469mm)(12.646mm,30.469mm) on Top Overlay Silk Text to Silk Clearance [0.096mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2003.099mil|Location2.X=2014.349mil|Location1.Y=4131.343mil|Location2.Y=4142.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2003.099mil|Location2.X=2014.349mil|Location1.Y=4131.343mil|Location2.Y=4142.593mil|Absolute=True">Silk To Silk Clearance Constraint: (0.2mm &lt; 0.254mm) Between Text "TS" (12.414mm,19.127mm) on Bottom Overlay And Track (0mm,21.105mm)(17.144mm,21.105mm) on Bottom Overlay Silk Text to Silk Clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2417.667mil|Location2.X=2428.917mil|Location1.Y=4149.188mil|Location2.Y=4160.438mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2417.667mil|Location2.X=2428.917mil|Location1.Y=4149.188mil|Location2.Y=4160.438mil|Absolute=True">Silk To Silk Clearance Constraint: (0.246mm &lt; 0.254mm) Between Text "TS" (22.436mm,21.581mm) on Top Overlay And Track (15.117mm,21.108mm)(63.417mm,21.108mm) on Top Overlay Silk Text to Silk Clearance [0.246mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2395.123mil|Location2.X=2406.373mil|Location1.Y=4704.365mil|Location2.Y=4715.615mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2395.123mil|Location2.X=2406.373mil|Location1.Y=4704.365mil|Location2.Y=4715.615mil|Absolute=True">Silk To Silk Clearance Constraint: (0.2mm &lt; 0.254mm) Between Text "TS" (22.598mm,33.909mm) on Top Overlay And Track (22.144mm,26.105mm)(22.144mm,47mm) on Top Overlay Silk Text to Silk Clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2395.123mil|Location2.X=2406.373mil|Location1.Y=5129.365mil|Location2.Y=5140.615mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2395.123mil|Location2.X=2406.373mil|Location1.Y=5129.365mil|Location2.Y=5140.615mil|Absolute=True">Silk To Silk Clearance Constraint: (0.2mm &lt; 0.254mm) Between Text "TS" (22.598mm,44.704mm) on Top Overlay And Track (22.144mm,26.105mm)(22.144mm,47mm) on Top Overlay Silk Text to Silk Clearance [0.2mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2394.789mil|Location2.X=2406.039mil|Location1.Y=5119.368mil|Location2.Y=5130.618mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2394.789mil|Location2.X=2406.039mil|Location1.Y=5119.368mil|Location2.Y=5130.618mil|Absolute=True">Silk To Silk Clearance Constraint: (0.183mm &lt; 0.254mm) Between Text "TS" (25.12mm,44.704mm) on Bottom Overlay And Track (22.144mm,26.105mm)(22.144mm,47mm) on Bottom Overlay Silk Text to Silk Clearance [0.183mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2395.002mil|Location2.X=2406.252mil|Location1.Y=4693.975mil|Location2.Y=4705.225mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2395.002mil|Location2.X=2406.252mil|Location1.Y=4693.975mil|Location2.Y=4705.225mil|Absolute=True">Silk To Silk Clearance Constraint: (0.194mm &lt; 0.254mm) Between Text "TS" (25.131mm,33.899mm) on Bottom Overlay And Track (22.144mm,26.105mm)(22.144mm,47mm) on Bottom Overlay Silk Text to Silk Clearance [0.194mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1903.131mil|Location2.X=1914.381mil|Location1.Y=4131.343mil|Location2.Y=4142.593mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1903.131mil|Location2.X=1914.381mil|Location1.Y=4131.343mil|Location2.Y=4142.593mil|Absolute=True">Silk To Silk Clearance Constraint: (0.2mm &lt; 0.254mm) Between Text "TS" (9.874mm,19.127mm) on Top Overlay And Track (0mm,21.105mm)(17.144mm,21.105mm) on Top Overlay Silk Text to Silk Clearance [0.2mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDRBFXX4H4O2RADFZSJ2W2CUMOTJN0SQNZ3PKI3LOGYR4JUK0WV44F"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Board Clearance Constraint (Gap=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1514.375mil|Location2.X=1525.625mil|Location1.Y=3899.375mil|Location2.Y=3910.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1514.375mil|Location2.X=1525.625mil|Location1.Y=3899.375mil|Location2.Y=3910.625mil|Absolute=True">Board Outline Clearance(Outline Edge): (0mm &lt; 0.254mm) Between Board Edge And Text "TSMP_OUT" (0.254mm,15.494mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1513.46mil|Location2.X=1521.127mil|Location1.Y=4142.072mil|Location2.Y=4149.739mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1513.46mil|Location2.X=1521.127mil|Location1.Y=4142.072mil|Location2.Y=4149.739mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (0mm,21.105mm)(17.144mm,21.105mm) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1513.46mil|Location2.X=1521.127mil|Location1.Y=4142.072mil|Location2.Y=4149.739mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1513.46mil|Location2.X=1521.127mil|Location1.Y=4142.072mil|Location2.Y=4149.739mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (0mm,21.105mm)(17.144mm,21.105mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1513.46mil|Location2.X=1521.127mil|Location1.Y=4299.552mil|Location2.Y=4307.219mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1513.46mil|Location2.X=1521.127mil|Location1.Y=4299.552mil|Location2.Y=4307.219mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (0mm,25.105mm)(17.144mm,25.105mm) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1513.46mil|Location2.X=1521.127mil|Location1.Y=4299.552mil|Location2.Y=4307.219mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1513.46mil|Location2.X=1521.127mil|Location1.Y=4299.552mil|Location2.Y=4307.219mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (0mm,25.105mm)(17.144mm,25.105mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2109.543mil|Location2.X=2120.793mil|Location1.Y=3311.491mil|Location2.Y=3322.741mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2109.543mil|Location2.X=2120.793mil|Location1.Y=3311.491mil|Location2.Y=3322.741mil|Absolute=True">Board Outline Clearance(Outline Edge): (0.108mm &lt; 0.254mm) Between Board Edge And Track (15.117mm,0.208mm)(15.117mm,10.508mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2109.543mil|Location2.X=2120.793mil|Location1.Y=3311.491mil|Location2.Y=3322.741mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2109.543mil|Location2.X=2120.793mil|Location1.Y=3311.491mil|Location2.Y=3322.741mil|Absolute=True">Board Outline Clearance(Outline Edge): (0.108mm &lt; 0.254mm) Between Board Edge And Track (15.117mm,0.208mm)(63.417mm,0.208mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2230.497mil|Location2.X=2238.164mil|Location1.Y=5164.267mil|Location2.Y=5171.933mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2230.497mil|Location2.X=2238.164mil|Location1.Y=5164.267mil|Location2.Y=5171.933mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (18.144mm,26.105mm)(18.144mm,47mm) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2230.497mil|Location2.X=2238.164mil|Location1.Y=5164.267mil|Location2.Y=5171.933mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2230.497mil|Location2.X=2238.164mil|Location1.Y=5164.267mil|Location2.Y=5171.933mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (18.144mm,26.105mm)(18.144mm,47mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2387.978mil|Location2.X=2395.644mil|Location1.Y=5164.267mil|Location2.Y=5171.933mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2387.978mil|Location2.X=2395.644mil|Location1.Y=5164.267mil|Location2.Y=5171.933mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (22.144mm,26.105mm)(22.144mm,47mm) on Bottom Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2387.978mil|Location2.X=2395.644mil|Location1.Y=5164.267mil|Location2.Y=5171.933mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2387.978mil|Location2.X=2395.644mil|Location1.Y=5164.267mil|Location2.Y=5171.933mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.254mm) Between Board Edge And Track (22.144mm,26.105mm)(22.144mm,47mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4011.117mil|Location2.X=4022.367mil|Location1.Y=3311.491mil|Location2.Y=3322.741mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\leonl\repos\DISTRIHV_PCB\hv-distribution-board.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=4011.117mil|Location2.X=4022.367mil|Location1.Y=3311.491mil|Location2.Y=3322.741mil|Absolute=True">Board Outline Clearance(Outline Edge): (0.108mm &lt; 0.254mm) Between Board Edge And Track (63.417mm,0.208mm)(63.417mm,10.508mm) on Top Overlay </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
