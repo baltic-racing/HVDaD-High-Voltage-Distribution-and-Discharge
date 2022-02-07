@@ -1,14 +1,14 @@
 Project Outputs Generation Report
 ---------------------------------
-Start Output Generation At 20:12:53 On 08.10.2021
+Start Output Generation At 13:00:25 On 05.02.2022
 
 Output: Bill of Materials
 Type  : BOM
-From  : Variant [[No Variations]] of Project [discharge-tsmp-board.PrjPcb]
-   Generated File[discharge-tsmp-board.xlsx]
+From  : Variant [[No Variations]] of Project [hv-distribution-board.PrjPcb]
+   Generated File[hv-distribution-board.xlsx]
 
 
 Files Generated   : 1
 Documents Printed : 0
 
-Finished Output Generation At 20:13:10 On 08.10.2021
+Finished Output Generation At 13:00:28 On 05.02.2022
