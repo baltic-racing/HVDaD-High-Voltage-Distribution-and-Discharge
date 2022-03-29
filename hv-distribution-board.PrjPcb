@@ -33,7 +33,7 @@ FSMCodingStyle=eFMSDropDownList_OneProcess
 FSMEncodingStyle=eFMSDropDownList_OneHot
 IsProjectConflictPreventionWarningsEnabled=1
 IsVirtualBomDocumentRemoved=1
-OutputPath=Project Outputs for hv-distribution-board
+OutputPath=
 LogFolderPath=
 ManagedProjectGUID=
 Template=C:\Users\leonl\repos\Altium_BR\templates\BR-Template.PrjPcb
@@ -346,7 +346,7 @@ SCH_HasExpandLogicalToPhysicalSheets=-1
 SaveSettingsToOutJob=0
 
 [Generic_EDE]
-OutputDir=Project Outputs for hv-distribution-board
+OutputDir=
 
 [OutputGroup1]
 Name=Netlist Outputs
@@ -457,7 +457,7 @@ OutputDefault20=0
 [OutputGroup2]
 Name=Simulator Outputs
 Description=
-TargetPrinter=Samsung M2070 Series
+TargetPrinter=Microsoft Print to PDF
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 
 [OutputGroup3]
