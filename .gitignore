@@ -15,3 +15,21 @@ Project Logs*
 __Previews*
 *.xlsx
 Status Report.Txt
+*.RUL
+*.LDP
+*.REP
+*.GTP
+*.GTS
+*.GTO
+*.GML
+*.GTL
+*.GBS
+*.GBP
+*.GBO
+*.GBL
+*.EXTREP
+*.DRR
+*.apr
+*.APR_LIB
+gerbers/JLC_GERBERS/hv-distribution-board.TXT
+gerbers/Blau, 5pcs, kein stencil.txt

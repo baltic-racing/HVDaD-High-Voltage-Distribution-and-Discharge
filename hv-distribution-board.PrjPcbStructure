@@ -1,3 +1,1 @@
-Record=TopLevelDocument|FileName=discharge-circuit.SchDoc|SheetNumber=1
-Record=NoMainPathDocument|SourceDocument=discharge-circuit.SchDoc|FileName=tsmp-resistors.SchDoc|SheetNumber=3
-Record=NoMainPathDocument|SourceDocument=discharge-circuit.SchDoc|FileName=voltage-detection.SchDoc|SheetNumber=2
+Record=TopLevelDocument|FileName=discharge-circuit.SchDoc

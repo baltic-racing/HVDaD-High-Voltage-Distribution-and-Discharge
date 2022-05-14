@@ -287,6 +287,66 @@ ParamVariationCount=44
 DocumentPath=Project Outputs for hv-distribution-board\Design Rule Check - hv-distribution-board.html
 DItemRevisionGUID=
 
+[GeneratedDocument2]
+DocumentPath=.\gerbers\JLC_GERBERS\hv-distribution-board.DRR
+DItemRevisionGUID=
+
+[GeneratedDocument3]
+DocumentPath=.\gerbers\JLC_GERBERS\hv-distribution-board.EXTREP
+DItemRevisionGUID=
+
+[GeneratedDocument4]
+DocumentPath=.\gerbers\JLC_GERBERS\hv-distribution-board.GBL
+DItemRevisionGUID=
+
+[GeneratedDocument5]
+DocumentPath=.\gerbers\JLC_GERBERS\hv-distribution-board.GBO
+DItemRevisionGUID=
+
+[GeneratedDocument6]
+DocumentPath=.\gerbers\JLC_GERBERS\hv-distribution-board.GBP
+DItemRevisionGUID=
+
+[GeneratedDocument7]
+DocumentPath=.\gerbers\JLC_GERBERS\hv-distribution-board.GBS
+DItemRevisionGUID=
+
+[GeneratedDocument8]
+DocumentPath=.\gerbers\JLC_GERBERS\hv-distribution-board.GM
+DItemRevisionGUID=
+
+[GeneratedDocument9]
+DocumentPath=.\gerbers\JLC_GERBERS\hv-distribution-board.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument10]
+DocumentPath=.\gerbers\JLC_GERBERS\hv-distribution-board.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument11]
+DocumentPath=.\gerbers\JLC_GERBERS\hv-distribution-board.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument12]
+DocumentPath=.\gerbers\JLC_GERBERS\hv-distribution-board.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument13]
+DocumentPath=.\gerbers\JLC_GERBERS\hv-distribution-board.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument14]
+DocumentPath=.\gerbers\JLC_GERBERS\hv-distribution-board.REP
+DItemRevisionGUID=
+
+[GeneratedDocument15]
+DocumentPath=.\gerbers\JLC_GERBERS\hv-distribution-board.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument16]
+DocumentPath=.\gerbers\JLC_GERBERS\hv-distribution-board.TXT
+DItemRevisionGUID=
+
 [Parameter1]
 Name=BoardName
 Value=hv-distribution-board
@@ -457,7 +517,7 @@ OutputDefault20=0
 [OutputGroup2]
 Name=Simulator Outputs
 Description=
-TargetPrinter=Microsoft Print to PDF
+TargetPrinter=Microsoft PCL6 Class Driver
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 
 [OutputGroup3]
@@ -887,6 +947,36 @@ OutputName11=Export STEP
 OutputDocumentPath11=
 OutputVariantName11=
 OutputDefault11=0
+OutputType12=Ansoft Neutral
+OutputName12=Ansoft Neutral (AutoPCB)
+OutputDocumentPath12=
+OutputVariantName12=
+OutputDefault12=0
+OutputType13=HyperLynx
+OutputName13=HyperLynx (AutoPCB)
+OutputDocumentPath13=
+OutputVariantName13=
+OutputDefault13=0
+OutputType14=Orcad v7 Capture Design
+OutputName14=Orcad v7 Capture Design (AutoSCH)
+OutputDocumentPath14=
+OutputVariantName14=
+OutputDefault14=0
+OutputType15=P-CAD ASCII
+OutputName15=P-CAD ASCII (AutoPCB)
+OutputDocumentPath15=
+OutputVariantName15=
+OutputDefault15=0
+OutputType16=P-CAD V16 Schematic Design
+OutputName16=P-CAD V16 Schematic Design (AutoSCH)
+OutputDocumentPath16=
+OutputVariantName16=
+OutputDefault16=0
+OutputType17=SiSoft
+OutputName17=SiSoft (AutoPCB)
+OutputDocumentPath17=
+OutputVariantName17=
+OutputDefault17=0
 
 [OutputGroup10]
 Name=PostProcess Outputs
