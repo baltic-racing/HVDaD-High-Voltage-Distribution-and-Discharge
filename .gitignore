@@ -33,3 +33,6 @@ Status Report.Txt
 *.APR_LIB
 gerbers/JLC_GERBERS/hv-distribution-board.TXT
 gerbers/Blau, 5pcs, kein stencil.txt
+*.GD1
+*.GG1
+*.GKO
